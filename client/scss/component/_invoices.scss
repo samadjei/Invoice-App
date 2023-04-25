@@ -1,0 +1,86 @@
+@use '../abstracts' as *;
+
+.invoice {
+	transform: translateY(-150px);
+}
+
+.invoices {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	height: 7.2rem;
+	margin-bottom: 1.6rem;
+	border-radius: 0.8rem;
+	padding: 1.6rem 2.4rem 1.6rem 3.2rem;
+	box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
+	cursor: pointer;
+	&--hashtag {
+		color: $colour-7;
+	}
+
+	&--id {
+		color: $colour-8;
+	}
+
+	&--dot {
+		width: 0.8rem;
+		height: 0.8rem;
+		border-radius: 50%;
+		display: inline-block;
+		margin-right: 0.8rem;
+	}
+
+	&__status {
+		border-radius: 6px;
+		width: 10.4rem;
+		height: 4rem;
+		text-align: center;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		&-text {
+			font-weight: $font-weight-700;
+			text-transform: capitalize;
+		}
+	}
+
+	// Paid
+	&--paid {
+		background: rgba(51, 214, 159, 0.06);
+		color: $colour-17;
+	}
+	&--dot-paid {
+		background: $colour-17;
+	}
+	// Pending
+	&--pending {
+		background: rgba(255, 143, 0, 0.06);
+		color: $colour-18;
+	}
+	&--dot-pending {
+		background: $colour-18;
+	}
+	// Draft
+	&--draft {
+		background: rgba(55, 59, 83, 0.06);
+		color: $colour-13;
+	}
+	&--dot-draft {
+		background: $colour-13;
+	}
+
+	&__flex {
+		display: flex;
+		align-items: center;
+	}
+
+	&__arrow-right {
+		width: 0.4rem;
+		height: 0.8rem;
+		margin-left: 2rem;
+	}
+	.text--two.h3--small {
+		font-weight: $font-weight-500;
+	}
+}

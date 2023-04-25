@@ -1,0 +1,173 @@
+@use '../abstracts' as *;
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	height: 19.6rem;
+	margin-top: 7.2rem;
+	margin-bottom: 6.5rem;
+	&__right {
+		display: flex;
+		align-items: center;
+		gap: 4rem;
+		position: relative;
+		z-index: 1;
+	}
+
+	&__total.h3--small {
+		color: $colour-6;
+		font-weight: $font-weight-400;
+	}
+
+	&__filter {
+		display: flex;
+		gap: 1.6rem;
+		cursor: pointer;
+	}
+
+	&__filters {
+		display: flex;
+		gap: 4rem;
+		align-items: center;
+		position: relative;
+		z-index: 1;
+	}
+	&__filter-arrow {
+		width: 1.4rem;
+		height: 1rem;
+		transition: all 0.5s ease;
+	}
+}
+
+.filter {
+	&__text {
+		display: flex;
+		gap: 1.3rem;
+		cursor: pointer;
+	}
+
+	&--checkbox {
+		background: #dfe3fa;
+		border-radius: 2px;
+	}
+}
+
+.filter__card {
+	width: 19.2rem;
+	height: 12.8rem;
+	background: $colour-14;
+	box-shadow: 0px 10px 20px rgba(72, 84, 159, 0.25);
+	padding: 2.4rem;
+	border-radius: 0.8rem;
+	position: absolute;
+	top: 6rem;
+	left: 0;
+	transform: translateX(-15%);
+	z-index: 10;
+	&-container {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: flex-start;
+		gap: 1.6rem;
+	}
+}
+
+.filter__button-white {
+	background: $colour-14;
+	width: 3.2rem;
+	height: 3.2rem;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.new__invoice-btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1.6rem;
+}
+
+.new__invoice-plus {
+	width: 1rem;
+	height: 1rem;
+}
+
+.filter__card-content {
+	display: block;
+	position: relative;
+	padding-left: 3rem;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	font-weight: 700;
+	font-size: 1.2rem;
+	line-height: 1.5rem;
+	letter-spacing: -0.25px;
+	color: #1e2139;
+}
+
+/* Hide the browser's default checkbox */
+.filter__card-content input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 1.6rem;
+	width: 1.6rem;
+	background-color: $colour-5;
+	border: 0.2rem solid #7c5dfa;
+	border-radius: 0.2rem;
+}
+
+/* On mouse-over, add a grey background color */
+.filter__card-content:hover input ~ .checkmark {
+	background-color: $colour-5;
+}
+
+.filter__card-content input:checked ~ .checkmark {
+	background-color: $colour-1;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+	content: '';
+	position: absolute;
+	display: none;
+}
+
+/* Show the checkmark when checked */
+.filter__card-content input:checked ~ .checkmark:after {
+	display: block;
+}
+
+/* Style the checkmark/indicator */
+.filter__card-content .checkmark:after {
+	left: 4.5px;
+	top: 0.5px;
+	width: 5px;
+	height: 8px;
+	border: solid white;
+	border-width: 0 0.2rem 0.2rem 0;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.rotate {
+	transform: rotate(180deg);
+	transition: all 0.5s ease;
+}

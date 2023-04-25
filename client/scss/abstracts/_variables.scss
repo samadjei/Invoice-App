@@ -1,0 +1,167 @@
+// Colours
+$colour-1: #7c5dfa;
+$colour-2: #9277ff;
+$colour-3: #1e2139;
+$colour-4: #252945;
+$colour-5: #dfe3fa;
+$colour-6: #888eb0;
+$colour-7: #7e88c3;
+$colour-8: #0c0e16;
+$colour-9: #ec5757;
+$colour-10: #ff9797;
+$colour-11: #f8f8fb;
+$colour-12: #141625;
+$colour-13: #373B53;
+$colour-14: #FFFFFF;
+$colour-15: #777F98;
+$colour-16: #F9FAFE;
+$colour-17: #33D69F;
+$colour-18: #FF8F00;
+$colour-19: #858BB2;
+
+// Font Weight 
+$font-weight-400: 400;
+$font-weight-500: 500;
+$font-weight-700: 700;
+
+// Typography
+h1,
+h2,
+h3 {
+	font-weight: $font-weight-700;
+	color: $colour-8;
+}
+
+h1 {
+	font-size: 3.2rem;
+	line-height: 3.6rem;
+	letter-spacing: -1px;
+}
+
+h2 {
+	font-size: 2rem;
+	line-height: 2.2rem;
+	letter-spacing: -0.625px;
+}
+
+h3 {
+	font-size: 1.6rem;
+	line-height: 2.4rem;
+	letter-spacing: -0.8px;
+}
+
+.h3--small {
+	font-size: 1.2rem;
+	line-height: 1.5rem;
+	letter-spacing: -0.25px;
+	font-weight: $font-weight-700;
+}
+
+.body--medium {
+	font-weight: $font-weight-500;
+	font-size: 1.2rem;
+	line-height: 1.5rem;
+	letter-spacing: -0.25px;
+	color: $colour-8;
+}
+
+.body--medium-2 {
+	font-weight: $font-weight-500;
+	font-size: 1.1rem;
+	line-height: 1.8rem;
+	letter-spacing: -0.229167px;
+	// color: $colour-8;
+}
+
+
+// Flex 
+.flex {
+  display: flex;
+}
+
+// Light theme 
+.light {
+	background: $colour-11;
+	height: 100vh;
+	transition: all 0.4s ease;
+	.text--one {
+		color: $colour-8;
+		transition: all 0.4s ease;
+	}
+	.text--two {
+		color: $colour-6;
+		transition: all 0.4s ease;
+	}
+	.background {
+		background: $colour-14;
+		transition: all 0.4s ease;
+	}
+	.background--two {
+		background: $colour-14;
+		transition: all 0.4s ease;
+	}
+	.input--primary {
+    border: 1px solid $colour-5;
+    border-radius: 4px;
+  }
+	.input{
+		color: $colour-8;
+		&::placeholder {
+			color: $colour-8;
+			opacity: 0.4;
+			font-weight: $font-weight-700;
+		}
+	}
+
+	.select__background {
+		border: 1px solid $colour-5;
+		background: $colour-14;
+		color: $colour-8;
+	}
+}
+
+// Dark theme 
+.dark {
+	transition: all 0.4s ease;
+	background: $colour-12;
+	height: 100vh;
+	.text--one {
+		color: $colour-14;
+		transition: all 0.4s ease;
+	}
+	.text--two {
+		color: $colour-5;
+		transition: all 0.4s ease;
+	}
+	.background {
+		background: $colour-12;
+		transition: all 0.4s ease;
+	}
+	.background--two {
+		background: $colour-3;
+		transition: all 0.4s ease;
+	}	
+
+	.input--primary {
+    border: 1px solid $colour-4;
+    border-radius: 4px;
+		transition: all 0.4s ease;
+  }
+
+	.input{
+		color: $colour-14;
+		transition: all 0.4s ease;
+		&::placeholder {
+			color: $colour-14;
+			opacity: 0.4;
+			font-weight: $font-weight-700;
+		}
+	}
+
+	.select__background {
+		border: 1px solid $colour-4;
+		background: $colour-3;
+		color: $colour-14;
+		transition: all 0.4s ease;
+	}
+}

@@ -1,0 +1,134 @@
+@use '../abstracts' as *;
+
+
+// Base Button Styling
+.btn {
+	display: inline-block;
+	font-size: 1.2rem;
+	line-height: 1.5rem;
+	letter-spacing: -0.25px;
+	font-weight: $font-weight-700;
+	border-radius: 2.8rem;
+	border: none;
+	&:hover,
+	&:focus {
+		cursor: pointer;
+	}
+}
+
+// btn placeholder
+%btn {
+	padding: 2rem 4rem;
+}
+
+// BUTTON STYLES
+.btn--style-one {
+	background: $color-1;
+	color: $colour-14;
+	transition: all 0.4s ease-in;
+	&:hover {
+		background: $colour-2;
+	}
+}
+
+.light {
+	.btn--style-two {
+		background: $colour-16;
+		color: $colour-7;
+		transition: all 0.4s ease-in;
+		&:hover {
+			background: $colour-5;
+			color: $colour-7;
+		}
+	}
+
+	.btn--style-three {
+		background: $colour-13;
+		color: $colour-6;
+		transition: all 0.4s ease-in;
+		&:hover {
+			background: $colour-8;
+		}
+	}
+}
+
+.dark {
+	.btn--style-two {
+		background: $colour-16;
+		color: $colour-7;
+		transition: all 0.4s ease-in;
+		&:hover {
+			background: $colour-14;
+			color: $colour-5;
+		}
+	}
+
+	.btn--style-three {
+		background: $colour-13;
+		color: $colour-5;
+		transition: all 0.4s ease-in;
+		&:hover {
+			background: $colour-3;
+		}
+	}
+}
+
+.btn--style-four {
+	background: $colour-16;
+	border-radius: 2.4rem;
+	transition: all 0.4s ease-in;
+	color: $colour-7;
+	&:hover, 
+	&:focus {
+		background: $colour-5;
+	}
+}
+
+.btn--style-five {
+	width: 8.9rem;
+	height: 4.8rem;
+	background: $colour-9;
+	color: $colour-14;
+	&:hover,
+	&:focus {
+		background: $colour-10;
+	}
+} 
+
+.btn--draft {
+	color: $colour-6;
+	background: $colour-13;
+}
+
+.btn--style-six {
+	background: $colour-16;
+	color: $colour-7;
+}
+
+// Button Sizes
+.btn--size-one {
+	width: 17.1rem;
+	height: 5.6rem;
+	margin: 0 auto;
+	font-size: 1.6rem;
+}
+
+.btn--size-two {
+	width: 13.3rem;
+	height: 4.8rem;
+}
+
+.btn--size-three {
+	width: 7.3rem;
+	height: 4.8rem;
+}
+
+.btn--size-four {
+	width: 8.9rem;
+	height: 4.8rem;
+}
+
+.btn--size-five {
+	width: 52rem;
+	height: 4.8rem;}
+

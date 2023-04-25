@@ -1,0 +1,63 @@
+@use '../abstracts' as *;
+
+.sidebar {
+	background: $colour-13;
+	width: 10.3rem;
+	height: 100vh;
+	border-radius: 0px 20px 20px 0px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	position: absolute;
+	z-index: 10;
+	&__logo {
+		display: flex;
+		justify-content: center;
+		&-bg {
+			background: $colour-1;
+			border-radius: 0px 20px 20px 0px;
+			padding: 3rem;
+			z-index: 1;
+			overflow: hidden;
+			position: relative;
+		}
+	}
+	&__logo-light {
+		background: $colour-2;
+		border-radius: 0px 20px 20px 0px;
+		position: absolute;
+		padding: 3rem;
+		top: 5rem;
+		left: 0;
+		transform: matrix(-1, 0, 0, 1, 0, 0);
+		height: 10.3rem;
+		width: 10.3rem;
+		z-index: -1;
+	}
+	&__avatar {
+		border-radius: 50%;
+		width: 4rem;
+		height: 4rem;
+	}
+	// Sidebar Bottom
+	&__bottom {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 2.4rem;
+		margin-bottom: 2.4rem;
+	}
+
+	&__moon {
+		cursor: pointer;
+		width: 2rem;
+		height: 2rem;
+	}
+
+	&__hr {
+		width: 100%;
+		height: 1px;
+		border: none;
+		background: #494e6e;
+	}
+}

@@ -1,0 +1,138 @@
+@use '../abstracts' as *;
+
+.invoiceDetails {
+	padding-top: 6.4rem;
+
+	&__upper {
+		box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
+		border-radius: 8px;
+		height: 8.8rem;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-top: 3.2rem;
+		padding: 2.4rem 3.2rem;
+	}
+	&--back-icon {
+		width: 1rem;
+		height: 1rem;
+	}
+
+	&--purple {
+		color: $color-7;
+	}
+
+	&--back-text {
+		margin-left: 2.366rem;
+	}
+
+	&__status {
+		display: flex;
+		align-items: center;
+		gap: 1.6rem;
+		&--text {
+			font-weight: $font-weight-500;
+			color: $colour-19;
+		}
+	}
+
+	&__buttons-flex {
+		display: flex;
+		gap: 0.8rem;
+	}
+
+	&__bottom {
+		background: $colour-14;
+		margin-top: 2.4rem;
+		border-radius: 0.8rem;
+		padding: 4.8rem;
+		&-header {
+			display: flex;
+			justify-content: space-between;
+		}
+	}
+
+	&__address {
+		display: flex;
+		flex-direction: column;
+		text-align: right;
+		gap: 0.5rem;
+		color: $colour-7;
+	}
+
+	&__payment-due {
+		margin-top: 3.2rem;
+	}
+
+	&__id {
+		display: flex;
+		flex-direction: column;
+		.form--title {
+			margin-bottom: 0;
+		}
+		.body--medium {
+			color: $colour-6;
+		}
+	}
+
+	&--description {
+		margin-top: 0.8rem;
+	}
+
+	&--subhead {
+		color: $colour-1 !important;
+	}
+
+	&__content-flex {
+		display: flex;
+		flex-direction: column;
+	}
+	&__content-base {
+		display: flex;
+		gap: 10rem;
+		margin-top: 2.1rem;
+	}
+
+	&__clientAddress {
+		display: flex;
+		flex-direction: column;
+		color: $colour-7;
+	}
+
+	&--bold-headers {
+		font-weight: $font-weight-700;
+		font-size: 1.5rem;
+		line-height: 2rem;
+		letter-spacing: -0.3125px;
+		margin-top: 1.2rem;
+		margin-bottom: 0.8rem;
+	}
+
+	&__items {
+		max-width: 63.4rem;
+	}
+	&__table {
+		margin-top: 4.5rem;
+		padding: 3.2rem;
+		background: $colour-16;
+	}
+
+	&__amount-due {
+		background: $colour-13;
+		color: $colour-14;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 3.2rem;
+		border-bottom-right-radius: 0.8rem;
+		border-bottom-left-radius: 0.8rem;
+	}
+
+	&--total {
+		font-weight: $font-weight-700;
+		font-size: 2.4rem;
+		line-height: 3.2rem;
+		text-align: right;
+		letter-spacing: -0.5px;
+	}
+}
