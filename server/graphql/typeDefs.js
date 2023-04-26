@@ -31,6 +31,7 @@ export const typeDefs = gql`
 
   type InvoiceType {
     id: ID!
+    slug: String!
     createdAt: String!
     paymentDue: String!
     description: String!
@@ -47,6 +48,7 @@ export const typeDefs = gql`
   # Inputs - what the use is going to input from the client
   input InvoiceInput {
     id: ID!
+    slug: String!
     createdAt: String!
     paymentDue: String!
     description: String!

@@ -27,6 +27,7 @@ export const resolvers = {
       {
         invoiceInput: {
           id,
+          slug,
           createdAt,
           paymentDue,
           description,
@@ -44,6 +45,7 @@ export const resolvers = {
       // create the invoices based off the mongoose model
       const createdInvoice = new Invoice({
         id: id,
+        slug: slug,
         createdAt: createdAt,
         paymentDue: paymentDue,
         description: description,
@@ -78,6 +80,7 @@ export const resolvers = {
         ID,
         invoiceInput: {
           id,
+          slug,
           createdAt,
           paymentDue,
           description,
@@ -96,6 +99,7 @@ export const resolvers = {
           { _id: ID },
           {
             id: id,
+            slug: slug,
             createdAt: createdAt,
             paymentDue: paymentDue,
             description: description,

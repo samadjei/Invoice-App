@@ -3,6 +3,7 @@ import { model, Schema } from "mongoose";
 // Mongoose Schema to save data to our mongoDB database
 const invoiceSchema = new Schema({
   id: String,
+  slug: String,
   createdAt: Date,
   paymentDue: Date,
   description: String,
