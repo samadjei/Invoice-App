@@ -5,11 +5,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import { gql, useQuery } from '@apollo/client';
+import { format } from 'date-fns';
 
 const GET_ALL_INVOICES = gql`
 	query InvoiceQuery {
 		invoices {
 			id
+			slug
 			createdAt
 			paymentDue
 			description
@@ -49,18 +51,23 @@ const Invoices = () => {
 	if (error) return 'Error: ' + error;
 
 	const invoicey = data.invoices;
-	console.log(data.invoices[0]);
+
+	function convertToDate(date) {
+		const convertedDate = new Date(parseInt(date));
+		const formatDate = format(convertedDate, 'dd MMM yyyy');
+		return formatDate;
+	}
 
 	return (
 		<div className="invoice">
-			{invoice.map((item) => {
+			{invoicey.map((item) => {
 				return (
 					<Link href={'/invoice/' + item.slug} className="invoices background--two" key={item.id}>
 						<strong className="invoices--id text--one">
 							<span className="invoices--hashtag">#</span>
 							{item.id}
 						</strong>
-						<span className="text--two h3--small">Due {item.paymentDue}</span>
+						<span className="text--two h3--small">Due {convertToDate(item.paymentDue)}</span>
 						<span className="text--two h3--small">{item.clientName}</span>
 						<h3 className="text--one">£ {item.total.toLocaleString()}</h3>
 						<div className="invoices__flex">
