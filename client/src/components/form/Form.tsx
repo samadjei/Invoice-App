@@ -6,6 +6,7 @@ import Delete from '../../../public/assets/icon-delete.svg';
 import { useForm } from 'react-hook-form';
 import { nanoid } from 'nanoid';
 import { invoice } from '../Data';
+import { InvoiceProps } from '../../interface/interface';
 
 const Form = ({ discardForm }) => {
 	const {
@@ -15,10 +16,6 @@ const Form = ({ discardForm }) => {
 	} = useForm({});
 
 	const [invoices, setInvocies] = useState(invoice);
-
-	const inputRef = useRef(null)
-
-	console.log('State', invoices);
 
 	const date = new Intl.DateTimeFormat('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' }).format(Date.now());
 
@@ -40,14 +37,16 @@ const Form = ({ discardForm }) => {
 		paymentDue: '',
 		paymentTerms: '',
 		description: '',
-		items: [{
-			name: '',
-			quantity: '',
-			price: '',
-		}]
+		items: [
+			{
+				name: '',
+				quantity: '',
+				price: '',
+			},
+		],
 	});
 
-console.log("Default",addFormData);
+	console.log('Default', addFormData);
 
 	const handleAddFormChange = (e) => {
 		e.preventDefault();
@@ -63,15 +62,15 @@ console.log("Default",addFormData);
 		setAddFormData(newFormData);
 	};
 
-	const addItemList = () => { 
-		// grabs the existing items 
-		setAddFormData([...addFormData,{ name: '',quantity: '',price: ''}])
-	}
+	const addItemList = () => {
+		// grabs the existing items
+		setAddFormData([...addFormData, { name: '', quantity: '', price: '' }]);
+	};
 
 	const onSubmit = (data) => {
 		console.log(data);
 
-		const newInvoice = {
+		const newInvoice: InvoiceProps = {
 			id: nanoid().slice(0, 6),
 			slug: nanoid().slice(0, 6),
 			createdAt: date,
@@ -100,7 +99,7 @@ console.log("Default",addFormData);
 					price: addFormData.price,
 				},
 			],
-			total: 4032.23,
+			total: addFormData.total,
 		};
 
 		// create a new inoice array to avoid mutating the state
@@ -334,7 +333,7 @@ console.log("Default",addFormData);
 								</td>
 								</tr>
 							</table> */}
-						<Button onClick={()=> addItemList()} buttonStyle="btn--style-four" buttonSize="btn--size-five">
+						<Button onClick={() => addItemList()} buttonStyle="btn--style-four" buttonSize="btn--size-five">
 							+ Add New Item
 						</Button>
 					</div>

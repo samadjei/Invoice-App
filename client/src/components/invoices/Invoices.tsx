@@ -42,6 +42,10 @@ const GET_ALL_INVOICES = gql`
 	}
 `;
 
+// interface InvoicesProps {
+
+// }
+
 const Invoices = () => {
 	const [statusText, setStatusText] = useState('paid');
 	const [statusColour, setStatusColour] = useState('invoice--dot-draft');
@@ -52,15 +56,65 @@ const Invoices = () => {
 
 	const invoicey = data.invoices;
 
-	function convertToDate(date) {
+	console.log(invoicey[0].status);
+
+	function convertToDate(date: string) {
 		const convertedDate = new Date(parseInt(date));
 		const formatDate = format(convertedDate, 'dd MMM yyyy');
 		return formatDate;
 	}
 
+	interface Address {
+		street: string;
+		city: string;
+		postCode: string;
+		country: string;
+	}
+
+	interface Items {
+		name: string;
+		quantity: number;
+		price: number;
+		total: number;
+	}
+
+	interface InvoiceProps {
+		id: string;
+		slug: string;
+		createdAt: string;
+		paymentDue: string;
+		description: string;
+		paymentTerms: number;
+		clientName: string;
+		clientEmail: string;
+		status: string;
+		senderAddress: Address;
+		clientAddress: Address;
+		items: Items;
+		total: number;
+	}
+
+	function getStatusColour(itemStatus: string) {
+		let statusColour: string;
+		let statusDot: string;
+		if (itemStatus === 'pending') {
+			statusColour = 'invoices--pending';
+			statusDot = 'invoices--dot-pending';
+		} else if (itemStatus === 'paid') {
+			statusColour = 'invoices--paid';
+			statusDot = 'invoices--dot-paid';
+		} else {
+			statusColour = 'invoices--draft';
+			statusDot = 'invoices--dot-draft';
+		}
+
+		// return [statusColour, statusDot];
+		return statusColour;
+	}
+
 	return (
 		<div className="invoice">
-			{invoicey.map((item) => {
+			{invoice.map((item: InvoiceProps) => {
 				return (
 					<Link href={'/invoice/' + item.slug} className="invoices background--two" key={item.id}>
 						<strong className="invoices--id text--one">
@@ -71,7 +125,7 @@ const Invoices = () => {
 						<span className="text--two h3--small">{item.clientName}</span>
 						<h3 className="text--one">£ {item.total.toLocaleString()}</h3>
 						<div className="invoices__flex">
-							<div className="invoices__status invoices--paid">
+							<div className={`invoices__status ${getStatusColour(item.status)}`}>
 								<span className="invoices--dot invoices--dot-paid"></span>
 								<span className="invoices__status-text">{item.status}</span>
 							</div>
