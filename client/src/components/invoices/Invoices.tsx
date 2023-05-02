@@ -56,8 +56,6 @@ const Invoices = () => {
 
 	const invoicey = data.invoices;
 
-	console.log(invoicey[0].status);
-
 	function convertToDate(date: string) {
 		const convertedDate = new Date(parseInt(date));
 		const formatDate = format(convertedDate, 'dd MMM yyyy');
@@ -111,6 +109,17 @@ const Invoices = () => {
 		// return [statusColour, statusDot];
 		return statusColour;
 	}
+	function getStatusDotColour(itemStatus: string) {
+		let statusDot: string;
+		if (itemStatus === 'pending') {
+			statusDot = 'invoices--dot-pending';
+		} else if (itemStatus === 'paid') {
+			statusDot = 'invoices--dot-paid';
+		} else {
+			statusDot = 'invoices--dot-draft';
+		}
+		return statusDot;
+	}
 
 	return (
 		<div className="invoice">
@@ -126,7 +135,7 @@ const Invoices = () => {
 						<h3 className="text--one">£ {item.total.toLocaleString()}</h3>
 						<div className="invoices__flex">
 							<div className={`invoices__status ${getStatusColour(item.status)}`}>
-								<span className="invoices--dot invoices--dot-paid"></span>
+								<span className={`invoices--dot ${getStatusDotColour(item.status)}`}></span>
 								<span className="invoices__status-text">{item.status}</span>
 							</div>
 							<Image className="invoices__arrow-right" src={ArrowRight} alt="Invoice App Logo" />
