@@ -21,12 +21,9 @@ const Home: NextPage<HomeProps> = () => {
 	const discardForm = (e) => {
 		e.preventDefault();
 		setInvoiceOpen(false);
-		console.log('clicked');
 	};
 
 	const { theme } = useStateContext();
-
-	console.log(theme);
 
 	return (
 		<div>

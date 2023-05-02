@@ -108,253 +108,246 @@ const Form = ({ discardForm }) => {
 	};
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)} className="form background">
-			<h2 className="form--title text--one">New Invoice</h2>
-			<div className="form__scroll">
-				<h3 className="form--title-subhead">Bill From</h3>
-				<div className="flex form__flex-space">
-					<TextField
-						className="display--none"
-						htmlFor="street-address"
-						label="Street Address"
-						{...register('streetOne', {
-							required: 'Street Address is required',
-						})}
-						name="streetOne"
-						onChange={handleAddFormChange}
-					/>
-					{/* {errors.streetOne && <span className="error">{errors.streetOne.message}</span>} */}
-					<div className="flex form__flex-gap">
+		<>
+			<form onSubmit={handleSubmit(onSubmit)} className="form background">
+				<h2 className="form--title text--one">New Invoice</h2>
+				<div className="form__scroll">
+					<h3 className="form--title-subhead">Bill From</h3>
+					<div className="flex form__flex-space">
 						<TextField
-							formSize="input--small"
-							htmlFor="city"
-							label="City"
-							{...register('cityOne', {
-								required: 'Required',
-							})}
-							name="cityOne"
-							onChange={handleAddFormChange}
-						/>
-						<TextField
-							formSize="input--small"
-							htmlFor="postCodeOne"
-							label="Post Code"
-							{...register('postCodeOne', {
-								required: 'Required',
-							})}
-							name="postCodeOne"
-							onChange={handleAddFormChange}
-						/>
-						<TextField
-							formSize="input--small"
-							htmlFor="countryTwo"
-							label="Country"
-							{...register('countryOne', {
-								required: 'Required',
-							})}
-							name="countryOne"
-							onChange={handleAddFormChange}
-						/>
-					</div>
-				</div>
-				<div className="form__flex-space">
-					<h3 className="form--title-subhead">Bill To</h3>
-					<div className="flex form__flex-gap form__flex-column">
-						<TextField
-							htmlFor="clients-name"
-							label="Client's Name"
-							{...register('clientsName', {
-								required: 'Required',
-							})}
-							name="clientsName"
-							onChange={handleAddFormChange}
-						/>
-						<TextField
-							htmlFor="clients-email"
-							placeholder="e.g. email@example.com"
-							label="Client's Email"
-							{...register('clientsEmail', {
-								required: 'Required',
-							})}
-							name="clientsEmail"
-							onChange={handleAddFormChange}
-						/>
-						<TextField
-							htmlFor="street-address"
+							formSize="input--large"
+							type="text"
+							className="display--none"
+							htmlFor="streetOne"
 							label="Street Address"
-							{...register('streetTwo', {
-								required: 'Required',
+							placeholder="19 Union Terrace"
+							{...register('streetOne', {
+								required: 'Street Address is required',
 							})}
-							name="streetTwo"
+							name="streetOne"
 						/>
+						{errors.streetOne && <span className="error">{errors.streetOne.message}</span>}
 						<div className="flex form__flex-gap">
 							<TextField
 								formSize="input--small"
-								htmlFor="city"
+								type="text"
+								htmlFor="cityOne"
+								placeholder="London"
 								label="City"
-								{...register('cityTwo', {
+								{...register('cityOne', {
 									required: 'Required',
 								})}
-								name="cityTwo"
-								onChange={handleAddFormChange}
+								name="cityOne"
 							/>
 							<TextField
 								formSize="input--small"
-								htmlFor="post-code"
+								htmlFor="postCodeOne"
 								label="Post Code"
-								{...register('postCodeTwo', {
+								placeholder="E1 3EZ"
+								{...register('postCodeOne', {
 									required: 'Required',
 								})}
-								name="postCodeTwo"
-								onChange={handleAddFormChange}
+								name="postCodeOne"
 							/>
 							<TextField
 								formSize="input--small"
-								htmlFor="country"
+								htmlFor="countryOne"
 								label="Country"
-								{...register('countryTwo', {
-									required: 'postCodeTwo',
+								placeholder="United Kingdom"
+								{...register('countryOne', {
+									required: 'Required',
 								})}
-								name="countryTwo"
-								onChange={handleAddFormChange}
+								name="countryOne"
 							/>
 						</div>
 					</div>
-				</div>
-				<div>
-					<div className="flex form__terms">
-						<TextField formSize="input--medium" type="date" label="Invoice Date" name="paymentDue" onChange={handleAddFormChange} />
-						<div className="input__payment-terms">
-							<label className="body--medium input--label-text" htmlFor="payment-terms">
-								Payment Terms
-							</label>
-							<select className="select select__background input--medium" name="paymentTerms" onChange={handleAddFormChange} id="payment-terms">
-								<option value="1">Net 1 Day</option>
-								<option value="7">Net 7 Day</option>
-								<option value="14">Net 14 Days</option>
-								<option value="30">Net 30 Days</option>
-							</select>
+					<div className="form__flex-space">
+						<h3 className="form--title-subhead">Bill To</h3>
+						<div className="flex form__flex-gap form__flex-column">
+							<TextField
+								htmlFor="clientsName"
+								label="Client's Name"
+								formSize="input--large"
+								type="text"
+								placeholder="Alex Grim"
+								{...register('clientsName', {
+									required: 'Required',
+								})}
+								name="clientsName"
+							/>
+							<TextField
+								htmlFor="clientsEmail"
+								label="Client's Email"
+								type="text"
+								formSize="input--large"
+								placeholder="alexgrim@gmail.com"
+								{...register('clientsEmail', {
+									required: 'Required',
+								})}
+								name="clientsEmail"
+							/>
+							<TextField
+								className="input--large"
+								htmlFor="streetTwo"
+								label="Street Address"
+								type="text"
+								formSize="input--large"
+								placeholder="84 Church Way"
+								{...register('streetTwo', {
+									required: 'Required',
+								})}
+								name="streetTwo"
+							/>
+							<div className="flex form__flex-gap">
+								<TextField
+									formSize="input--small"
+									htmlFor="cityTwo"
+									label="City"
+									placeholder="Bradford"
+									{...register('cityTwo', {
+										required: 'Required',
+									})}
+									name="cityTwo"
+								/>
+								<TextField
+									formSize="input--small"
+									htmlFor="postCodeTwo"
+									label="Post Code"
+									placeholder="BD1 9PB"
+									{...register('postCodeTwo', {
+										required: 'Required',
+									})}
+									name="postCodeTwo"
+								/>
+								<TextField
+									formSize="input--small"
+									htmlFor="countryTwo"
+									label="Country"
+									placeholder="United Kingdom"
+									{...register('countryTwo', {
+										required: 'postCodeTwo',
+									})}
+									name="countryTwo"
+								/>
+							</div>
 						</div>
 					</div>
-					<TextField htmlFor="project-description" label="Project Description" placeholder="e.g.Graphic Design Service" name="description" onChange={handleAddFormChange} />
-				</div>
-				<div className="item__list">
-					<span className="item--list-header">Item List</span>
-					<div className="flex form__flex-column">
-						<div className="flex item__list-subheaders">
-							<div>
-								<span className="body--medium">Item Name</span>
-								<TextField
-									formSize="input--item"
-									{...register('itemName', {
-										required: 'itemName',
+					<div>
+						<div className="flex form__terms">
+							<TextField
+								formSize="input--medium"
+								type="date"
+								htmlFor="paymentDue"
+								label="Invoice Date"
+								{...register('paymentDue', {
+									required: 'paymentDue',
+								})}
+								name="paymentDue"
+							/>
+							<div className="input__payment-terms">
+								<label className="body--medium input--label-text" htmlFor="payment-terms">
+									Payment Terms
+								</label>
+								<select
+									className="select select__background input--medium"
+									id="payment-terms"
+									{...register('paymentTerms', {
+										required: 'paymentTerms',
 									})}
-									name="name"
-									onChange={handleAddFormChange}
-								/>
-							</div>
-							<div>
-								<span className="body--medium ">Qty.</span>
-								<TextField
-									type="number"
-									formSize="input--qty"
-									{...register('quantity', {
-										required: 'quantity',
-									})}
-									name="quantity"
-									onChange={handleAddFormChange}
-								/>
-							</div>
-							<div>
-								<span className="body--medium ">Price</span>
-								<TextField
-									type="number"
-									formSize="input--price"
-									{...register('price', {
-										required: 'price',
-									})}
-									name="price"
-									onChange={handleAddFormChange}
-								/>
-							</div>
-							<div className="flex">
-								<span className="body--medium">Total</span>
-								<div className="flex input__total-spot">
-									<span className="input--total body--medium">156.00</span>
-									<Image className="total--delete" src={Delete} alt="Delete Icon" />
-								</div>
+									name="paymentTerms"
+								>
+									<option value="1">Net 1 Day</option>
+									<option value="7">Net 7 Day</option>
+									<option value="14">Net 14 Days</option>
+									<option value="30">Net 30 Days</option>
+								</select>
 							</div>
 						</div>
-						{/* <table className='input__item-list'>
-								<tr>
-									<th className="body--medium">Item Name</th>
-									<th className="body--medium">QTY.</th>
-									<th className="body--medium">Price</th>
-									<th className="body--medium">Total</th>
-							</tr>
-							<tr>
-								<td className='input__item-fields'>
-								<TextField
-									formSize="input--item"
-									{...register('itemName', {
-										required: 'itemName',
-									})}
-									name="name"
-									onChange={handleAddFormChange}
-								/>
-								</td>
-								<td>
-								<TextField
-									type="number"
-									formSize="input--quantity"
-									{...register('quantity', {
-										required: 'quantity',
-									})}
-									name="quantity"
-									onChange={handleAddFormChange}
-								/>
-								</td>
-								<td>
-								<TextField
-									type="number"
-									formSize="input--price"
-									{...register('price', {
-										required: 'price',
-									})}
-									name="price"
-									onChange={handleAddFormChange}
-								/>
-								</td>
-								<td>
-								<div className="flex input__total-spot">
-									<span className="input--total body--medium">156.00</span>
-									<Image className="total--delete" src={Delete} alt="Delete Icon" />
+						<TextField
+							htmlFor="projectDescription"
+							label="Project Description"
+							type="text"
+							placeholder="Graphic Design Service"
+							{...register('projectDescription', {
+								required: 'projectDescription',
+							})}
+							name="projectDescription"
+						/>
+					</div>
+					<div className="item__list">
+						<span className="item--list-header">Item List</span>
+						<div className="flex form__flex-column">
+							<div className="flex item__list-subheaders">
+								<div>
+									<span className="body--medium">Item Name</span>
+									<TextField
+										formSize="input--item"
+										htmlFor="itemName"
+										type="text"
+										placeholder="Banner Design"
+										{...register('itemName', {
+											required: 'itemName',
+										})}
+										name="itemName"
+									/>
 								</div>
-								</td>
-								</tr>
-							</table> */}
-						<Button onClick={() => addItemList()} buttonStyle="btn--style-four" buttonSize="btn--size-five">
-							+ Add New Item
+								<div>
+									<span className="body--medium ">Qty.</span>
+									<TextField
+										type="number"
+										formSize="input--qty"
+										htmlFor="quantity"
+										placeholder="1"
+										{...register('quantity', {
+											required: 'quantity',
+										})}
+										name="quantity"
+									/>
+								</div>
+								<div>
+									<span className="body--medium ">Price</span>
+									<TextField
+										type="number"
+										formSize="input--price"
+										htmlFor="price"
+										placeholder="156.00"
+										{...register('price', {
+											required: 'price',
+										})}
+										name="price"
+									/>
+								</div>
+								<div className="flex">
+									<span className="body--medium">Total</span>
+									<div className="flex input__total-spot">
+										<span className="input--total body--medium">156.00</span>
+										<Image className="total--delete" src={Delete} alt="Delete Icon" />
+									</div>
+								</div>
+							</div>
+							<Button onClick={() => addItemList()} type="submit" buttonStyle="btn--style-four" buttonSize="btn--size-five">
+								+ Add New Item
+							</Button>
+						</div>
+					</div>
+				</div>
+				<div className="form__bottom-buttons flex">
+					<div className="form__discard-right">
+						<Button onClick={discardForm} buttonStyle="btn--style-six" buttonSize="btn--size-four">
+							Discard
 						</Button>
 					</div>
-				</div>
-			</div>
-			<div className="form__bottom-buttons flex">
-				<div className="form__discard-right">
-					<Button onClick={discardForm} buttonStyle="btn--style-six" buttonSize="btn--size-four">
-						Discard
+					<div className="form__draft">
+						<Button buttonStyle="btn--style-three" buttonSize="btn--size-two">
+							Save as Draft
+						</Button>
+					</div>
+					<Button type="submit" buttonStyle="" buttonSize="btn--size-two">
+						Save & Send
 					</Button>
 				</div>
-				<div className="form__draft">
-					<Button buttonStyle="btn--style-three" buttonSize="btn--size-two">
-						Save as Draft
-					</Button>
-				</div>
-				<Button type="submit" buttonStyle="" buttonSize="btn--size-two">
-					Save & Send
-				</Button>
-			</div>
-		</form>
+			</form>
+		</>
 	);
 };
 
