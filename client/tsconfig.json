@@ -16,6 +16,6 @@
 		"incremental": true
 	},
 	"files": ["globals.d.ts"],
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/form/Forms.tsx"],
 	"exclude": ["node_modules"]
 }

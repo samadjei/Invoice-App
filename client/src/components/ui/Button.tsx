@@ -4,7 +4,7 @@ const STYLES = ['btn--style-one', 'btn--style-two', 'btn--style-three', 'btn--st
 const SIZES = ['btn--size-one', 'btn--size-two', 'btn--size-three', 'btn--size-four', 'btn--size-five'];
 
 interface ButtonProps {
-	onClick: () => void;
+	onClick?: () => void;
 	href?: string;
 	buttonStyle: string;
 	buttonSize: string;

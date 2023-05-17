@@ -6,9 +6,11 @@ import type { NextPage } from 'next';
 import Form from '../src/components/form/Form';
 import Invoices from '../src/components/invoices/Invoices';
 import { useStateContext } from '../src/hooks/context/StateContext';
+import Forms from '../src/components/form/Forms';
 interface HomeProps {
 	toggleTheme: () => void;
 	invoiceOpen: boolean;
+	discardForm: () => boolean;
 }
 
 const Home: NextPage<HomeProps> = () => {
@@ -40,7 +42,8 @@ const Home: NextPage<HomeProps> = () => {
 					<div className="main__flex">
 						<Header invoiceOpen={invoiceOpen} setInvoiceOpen={setInvoiceOpen} openFilter={openFilter} />
 					</div>
-					<Invoices />
+					{/* <Invoices /> */}
+					<Forms />
 				</div>
 			</main>
 		</div>

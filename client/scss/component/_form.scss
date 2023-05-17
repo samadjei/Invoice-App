@@ -83,11 +83,9 @@
 	font-weight: $font-weight-700;
 	color: $colour-8;
 	width: 100%;
+	position: relative;
 
-	&--border-error {
-		border: 1px solid $colour-8;
-	}
-
+	
 	&--large-width {
 		width: 50.4rem;
 	}
@@ -101,6 +99,10 @@
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
+		.input--error {
+		border: 1px solid $colour-9;
+	}
+
 	}
 
 	&--padding {
@@ -178,7 +180,6 @@
 	&__item-fields {
 		display: flex;
 	}
-
 }
 
 .select {
@@ -225,8 +226,4 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type='number'] {
 	-moz-appearance: textfield;
-}
-
-.error {
-	color: $colour-9;
 }

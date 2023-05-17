@@ -76,7 +76,7 @@ const Invoices = () => {
 		total: number;
 	}
 
-	interface InvoiceProps {
+	interface InvoiceInterface {
 		id: string;
 		slug: string;
 		createdAt: string;
@@ -123,7 +123,7 @@ const Invoices = () => {
 
 	return (
 		<div className="invoice">
-			{invoice.map((item: InvoiceProps) => {
+			{invoice.map((item: InvoiceInterface) => {
 				return (
 					<Link href={'/invoice/' + item.slug} className="invoices background--two" key={item.id}>
 						<strong className="invoices--id text--one">

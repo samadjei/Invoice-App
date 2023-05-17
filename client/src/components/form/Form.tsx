@@ -6,162 +6,81 @@ import Delete from '../../../public/assets/icon-delete.svg';
 import { useForm } from 'react-hook-form';
 import { nanoid } from 'nanoid';
 import { invoice } from '../Data';
-import { InvoiceProps } from '../../interface/interface';
+// import { InvoiceInterface } from '../../interface/interface';
 
-const Form = ({ discardForm }) => {
+type FormValues = {
+	senderAddress: {
+		streetOne: string;
+		cityOne: string;
+		postCodeOne: string;
+		countryOne: string;
+	};
+};
+
+const Form = () => {
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm({});
-
-	const [invoices, setInvocies] = useState(invoice);
+	} = useForm<FormValues>();
 
 	const date = new Intl.DateTimeFormat('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' }).format(Date.now());
 
-	const [addFormData, setAddFormData] = useState({
-		senderAddress: {
-			streetOne: '',
-			cityOne: '',
-			postCodeOne: '',
-			countryOne: '',
-		},
-		clientsName: '',
-		clientsEmail: '',
-		clientAddress: {
-			streetTwo: '',
-			cityTwo: '',
-			postCodeTwo: '',
-			countryTwo: '',
-		},
-		paymentDue: '',
-		paymentTerms: '',
-		description: '',
-		items: [
-			{
-				name: '',
-				quantity: '',
-				price: '',
-			},
-		],
-	});
-
-	console.log('Default', addFormData);
-
-	const handleAddFormChange = (e) => {
-		e.preventDefault();
-
-		const fieldName = e.target.getAttribute('name');
-		const fieldValue = e.target.value;
-
-		// make a copy of the existing form data
-		const newFormData = { ...addFormData };
-		// update the object with the new data the user has typed
-		newFormData[fieldName] = fieldValue;
-
-		setAddFormData(newFormData);
-	};
-
-	const addItemList = () => {
-		// grabs the existing items
-		setAddFormData([...addFormData, { name: '', quantity: '', price: '' }]);
-	};
-
-	const onSubmit = (data) => {
-		console.log(data);
-
-		const newInvoice: InvoiceProps = {
-			id: nanoid().slice(0, 6),
-			slug: nanoid().slice(0, 6),
-			createdAt: date,
-			paymentDue: addFormData.paymentDue,
-			description: addFormData.description,
-			paymentTerms: addFormData.paymentTerms,
-			clientsName: addFormData.clientsName,
-			clientsEmail: addFormData.clientsEmail,
-			status: 'pending',
-			senderAddress: {
-				streetOne: addFormData.streetOne,
-				cityOne: addFormData.cityOne,
-				postCodeOne: addFormData.postCodeOne,
-				countryOne: addFormData.countryOne,
-			},
-			clientAddress: {
-				streetTwo: addFormData.streetTwo,
-				cityTwo: addFormData.cityTwo,
-				postCodeTwo: addFormData.postCodeTwo,
-				countryTwo: addFormData.countryTwo,
-			},
-			items: [
-				{
-					name: addFormData.name,
-					quantity: addFormData.quantity,
-					price: addFormData.price,
-				},
-			],
-			total: addFormData.total,
-		};
-
-		// create a new inoice array to avoid mutating the state
-		const newInvoices = [...invoices, newInvoice];
-		setInvocies(newInvoices);
+	const onSubmit = (data: FormValues) => {
+		console.log('Submitted data', data);
 	};
 
 	return (
 		<>
-			<form onSubmit={handleSubmit(onSubmit)} className="form background">
+			<form onSubmit={handleSubmit(onSubmit)} noValidate className="form background">
 				<h2 className="form--title text--one">New Invoice</h2>
 				<div className="form__scroll">
 					<h3 className="form--title-subhead">Bill From</h3>
 					<div className="flex form__flex-space">
-						<TextField
-							formSize="input--large"
-							type="text"
-							className="display--none"
-							htmlFor="streetOne"
-							label="Street Address"
-							placeholder="19 Union Terrace"
-							{...register('streetOne', {
-								required: 'Street Address is required',
-							})}
-							name="streetOne"
-						/>
-						{errors.streetOne && <span className="error">{errors.streetOne.message}</span>}
+						
+						<TextField formSize="input--large" type="text" htmlFor="streetOne" label="Street Address" placeholder="19 Union Terrace" name="streetOne" register={register} />
+						{/* <input htmlFor="countryOne" type="text" {...register('senderAddress.countryOne')} /> */}
+
 						<div className="flex form__flex-gap">
-							<TextField
+							{/* <TextField
 								formSize="input--small"
+								id="cityOne"
 								type="text"
 								htmlFor="cityOne"
 								placeholder="London"
 								label="City"
-								{...register('cityOne', {
-									required: 'Required',
+								{...register('senderAddress.cityOne', {
+									required: 'City is required',
 								})}
 								name="cityOne"
-							/>
-							<TextField
+							/> */}
+							{/* <TextField
+								id="postCodeOne"
 								formSize="input--small"
 								htmlFor="postCodeOne"
 								label="Post Code"
+								type="text"
 								placeholder="E1 3EZ"
-								{...register('postCodeOne', {
+								{...register('senderAddress.postCodeOne', {
 									required: 'Required',
 								})}
 								name="postCodeOne"
-							/>
-							<TextField
+							/> */}
+							{/* <TextField
 								formSize="input--small"
 								htmlFor="countryOne"
+								id="countryOne"
+								type="text"
 								label="Country"
 								placeholder="United Kingdom"
-								{...register('countryOne', {
+								{...register('senderAddress.countryOne', {
 									required: 'Required',
 								})}
 								name="countryOne"
-							/>
+							/> */}
 						</div>
 					</div>
-					<div className="form__flex-space">
+					{/* <div className="form__flex-space">
 						<h3 className="form--title-subhead">Bill To</h3>
 						<div className="flex form__flex-gap form__flex-column">
 							<TextField
@@ -170,7 +89,7 @@ const Form = ({ discardForm }) => {
 								formSize="input--large"
 								type="text"
 								placeholder="Alex Grim"
-								{...register('clientsName', {
+								{...register('clientName', {
 									required: 'Required',
 								})}
 								name="clientsName"
@@ -181,7 +100,7 @@ const Form = ({ discardForm }) => {
 								type="text"
 								formSize="input--large"
 								placeholder="alexgrim@gmail.com"
-								{...register('clientsEmail', {
+								{...register('clientEmail', {
 									required: 'Required',
 								})}
 								name="clientsEmail"
@@ -193,7 +112,7 @@ const Form = ({ discardForm }) => {
 								type="text"
 								formSize="input--large"
 								placeholder="84 Church Way"
-								{...register('streetTwo', {
+								{...register('clientAddress.streetTwo', {
 									required: 'Required',
 								})}
 								name="streetTwo"
@@ -204,7 +123,7 @@ const Form = ({ discardForm }) => {
 									htmlFor="cityTwo"
 									label="City"
 									placeholder="Bradford"
-									{...register('cityTwo', {
+									{...register('clientAddress.cityTwo', {
 										required: 'Required',
 									})}
 									name="cityTwo"
@@ -214,7 +133,7 @@ const Form = ({ discardForm }) => {
 									htmlFor="postCodeTwo"
 									label="Post Code"
 									placeholder="BD1 9PB"
-									{...register('postCodeTwo', {
+									{...register('clientAddress.postCodeTwo', {
 										required: 'Required',
 									})}
 									name="postCodeTwo"
@@ -224,15 +143,15 @@ const Form = ({ discardForm }) => {
 									htmlFor="countryTwo"
 									label="Country"
 									placeholder="United Kingdom"
-									{...register('countryTwo', {
+									{...register('clientAddress.countryTwo', {
 										required: 'postCodeTwo',
 									})}
 									name="countryTwo"
 								/>
 							</div>
 						</div>
-					</div>
-					<div>
+					</div> */}
+					{/* <div>
 						<div className="flex form__terms">
 							<TextField
 								formSize="input--medium"
@@ -273,8 +192,8 @@ const Form = ({ discardForm }) => {
 							})}
 							name="projectDescription"
 						/>
-					</div>
-					<div className="item__list">
+					</div> */}
+					{/* <div className="item__list">
 						<span className="item--list-header">Item List</span>
 						<div className="flex form__flex-column">
 							<div className="flex item__list-subheaders">
@@ -329,10 +248,10 @@ const Form = ({ discardForm }) => {
 								+ Add New Item
 							</Button>
 						</div>
-					</div>
+					</div> */}
 				</div>
 				<div className="form__bottom-buttons flex">
-					<div className="form__discard-right">
+					{/* <div className="form__discard-right">
 						<Button onClick={discardForm} buttonStyle="btn--style-six" buttonSize="btn--size-four">
 							Discard
 						</Button>
@@ -341,7 +260,7 @@ const Form = ({ discardForm }) => {
 						<Button buttonStyle="btn--style-three" buttonSize="btn--size-two">
 							Save as Draft
 						</Button>
-					</div>
+					</div> */}
 					<Button type="submit" buttonStyle="" buttonSize="btn--size-two">
 						Save & Send
 					</Button>
