@@ -8,13 +8,8 @@
 |  🐸 Returns:  OBJECT
 *-------------------------------------------------------------------*/
 
-type Error = {
-	errors: string;
-	name: string;
-};
-
-// go through the errors object and find the error related to the input
-export function findInputError(errors, name: Error) {
+// Record<string, string>. This indicates that errors is an object with string keys and string values.
+export function findInputError(errors: Record<string, string>, name: string) {
 	const filtered = Object.keys(errors)
 		.filter((key) => key.includes(name))
 		.reduce((cur, key) => {
@@ -22,3 +17,5 @@ export function findInputError(errors, name: Error) {
 		}, {});
 	return filtered;
 }
+
+// go through the errors object and find the error related to the input

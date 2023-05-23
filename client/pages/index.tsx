@@ -42,8 +42,7 @@ const Home: NextPage<HomeProps> = () => {
 					<div className="main__flex">
 						<Header invoiceOpen={invoiceOpen} setInvoiceOpen={setInvoiceOpen} openFilter={openFilter} />
 					</div>
-					{/* <Invoices /> */}
-					<Forms />
+					<Invoices />
 				</div>
 			</main>
 		</div>
