@@ -3,11 +3,12 @@ import Button from '../ui/Button';
 import TextField from './TextField';
 import Image from 'next/image';
 import Delete from '../../../public/assets/icon-delete.svg';
-import { FormProvider, useForm } from 'react-hook-form';
+import { FormProvider, useForm, useFormContext } from 'react-hook-form';
 import { nanoid } from 'nanoid';
 import { invoice } from '../Data';
 import SelectField from './SelectField';
 // import { InvoiceInterface } from '../../interface/interface';
+import { useFieldArray } from 'react-hook-form';
 
 type FormValues = {
 	senderAddress: {
@@ -18,8 +19,31 @@ type FormValues = {
 	};
 };
 
+type itemListValues = {
+	items: {
+		itemName: string;
+		Qty: number;
+		price: number;
+	}[];
+};
+
 const Form = () => {
 	const methods = useForm();
+	const {
+		control,
+		formState: { errors },
+	} = useForm<itemListValues>({
+		defaultValues: {
+			items: [{ itemName: '', Qty: 0, price: 0 }],
+		},
+	});
+	const { fields, append, remove } = useFieldArray({
+		name: 'items',
+		control,
+		rules: {
+			required: 'Please append add at least one item',
+		},
+	});
 	const [success, setSuccess] = useState(false);
 
 	const date = new Intl.DateTimeFormat('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' }).format(Date.now());
@@ -68,31 +92,40 @@ const Form = () => {
 					<div className="item__list">
 						<span className="item--list-header">Item List</span>
 						<div className="flex form__flex-column">
-							<div className="flex item__list-subheaders">
-								<div>
-									<span className="body--medium">Item Name</span>
-									<TextField formSize="input--item" id="itemName" label="itemName" type="text" placeholder="Banner Design" name="itemName" />
-								</div>
-								<div>
-									<span className="body--medium ">Qty.</span>
-									<TextField type="number" formSize="input--qty" label="quantity" id="quantity" placeholder="1" name="quantity" />
-								</div>
-								<div>
-									<span className="body--medium ">Price</span>
-									<TextField type="number" formSize="input--price" label="price" id="price" placeholder="156.00" name="price" />
-								</div>
-								<div className="flex">
-									<span className="body--medium">Total</span>
-									<div className="flex input__total-spot">
-										<span className="input--total body--medium">156.00</span>
-										<Image className="total--delete" src={Delete} alt="Delete Icon" />
+							{fields.map((field, index) => {
+								return (
+									<div className="flex item__list-subheaders" key={field.id}>
+										<div>
+											<TextField formSize="input--item" id="itemName" label="Item Name" type="text" placeholder="Banner Design" name={`items.${index}.itemName`} />
+										</div>
+										<div>
+											<TextField type="number" formSize="input--qty" label="Qty." id="quantity" placeholder="1" name={`items.${index}.Qty.`} />
+										</div>
+										<div>
+											<TextField type="number" formSize="input--price" label="Price" id="price" placeholder="156.00" name={`items.${index}.price`} />
+										</div>
+										<div className="flex">
+											<span className="body--medium">Total</span>
+											<div className="flex input__total-spot">
+												<span className="input--total body--medium">0</span>
+												<Image onClick={() => remove(index)} className="total--delete" src={Delete} alt="Delete Icon" />
+											</div>
+										</div>
 									</div>
-								</div>
-							</div>
-							<Button type="submit" buttonStyle="btn--style-four" buttonSize="btn--size-five">
+								);
+							})}
+							<Button
+								onClick={() => {
+									append({ itemName: '', Qty: 0, price: 0 });
+								}}
+								type="submit"
+								buttonStyle="btn--style-four"
+								buttonSize="btn--size-five"
+							>
 								+ Add New Item
 							</Button>
 						</div>
+						<p>{errors.items?.root?.message}</p>
 					</div>
 				</div>
 				<div className="form__bottom-buttons flex">
